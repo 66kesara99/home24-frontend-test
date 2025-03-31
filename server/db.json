@@ -1,0 +1,292 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Furniture"
+    },
+    {
+      "id": 2,
+      "parent_id": 1,
+      "name": "Sofas & Couches"
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "name": "Cabinets"
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "name": "Chairs"
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "name": "Tables"
+    },
+    {
+      "id": 6,
+      "parent_id": 1,
+      "name": "Beds"
+    },
+    {
+      "id": 7,
+      "name": "Carpets"
+    },
+    {
+      "id": 8,
+      "name": "Kitchen"
+    },
+    {
+      "id": 9,
+      "parent_id": 7,
+      "name": "Dishes"
+    },
+    {
+      "id": 10,
+      "parent_id": 7,
+      "name": "Cutlery"
+    },
+    {
+      "id": 11,
+      "parent_id": 7,
+      "name": "Cookware"
+    },
+    {
+      "id": 12,
+      "name": "Lamps"
+    }
+  ],
+  "products": [
+    {
+      "id": 21,
+      "name": "Sofa 1",
+      "category_id": 2,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        },
+        {
+          "code": "material",
+          "value": "wood"
+        },
+        {
+          "code": "length",
+          "value": "10m"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Sofa 2",
+      "category_id": 2,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        },
+        {
+          "code": "material",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Sofa 3",
+      "category_id": 2,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Sofa 4",
+      "category_id": 2,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Sofa 5",
+      "category_id": 2,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Cabinet 1",
+      "category_id": 3,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        },
+        {
+          "code": "material",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Cabinet 2",
+      "category_id": 3,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Cabinet 3",
+      "category_id": 3,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        },
+        {
+          "code": "code",
+          "value": "value2"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Cabinet 4",
+      "category_id": 3,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Cabinet 5",
+      "category_id": 3,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Chair 1",
+      "category_id": 4,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Chair 2",
+      "category_id": 4,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Chair 3",
+      "category_id": 4,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        },
+        {
+          "code": "material",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Table 1",
+      "category_id": 5,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Table 2",
+      "category_id": 5,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Table 3",
+      "category_id": 5,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Table 4",
+      "category_id": 5,
+      "attributes": [
+        {
+          "code": "color",
+          "value": "red"
+        }
+      ]
+    }
+  ],
+  "last-modified": {
+    "id": 43,
+    "name": "Chair 3",
+    "category_id": 4,
+    "attributes": [
+      {
+        "code": "color",
+        "value": "red"
+      },
+      {
+        "code": "material",
+        "value": "wood"
+      }
+    ]
+  },
+  "user": {
+    "email": "test@email.com",
+    "password": "asdf"
+  }
+}
