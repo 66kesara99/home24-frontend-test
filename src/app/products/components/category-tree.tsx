@@ -7,10 +7,12 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { useNavigate } from "react-router";
 import { getCategories } from "../../../api/categories";
+import { Category } from "../../../entities/category-entity";
 import { CategoryContext } from "../../../state/category-state/category-context";
 import { addToTree, CategoryTreeNode } from "../../../utils/tree-utils";
 
@@ -38,8 +40,8 @@ const mapTreeToTreeDataNode = (
 };
 
 const CategoryTree: React.FC<Props> = ({ onClickNode }) => {
+  const initRef = useRef(true);
   const { setSelectedCategory, setCategoryMap } = useContext(CategoryContext);
-
   const navigate = useNavigate();
   const { message } = App.useApp();
 
@@ -55,34 +57,59 @@ const CategoryTree: React.FC<Props> = ({ onClickNode }) => {
     [navigate, onClickNode, setSelectedCategory]
   );
 
-  const init = useCallback(async () => {
+  const fetchCategories = useCallback(async () => {
     try {
       const categories = await getCategories();
+      return categories;
+    } catch (e) {
+      console.error(e);
+      message.error("Something went wrong!");
+    }
+  }, [message]);
 
+  const createCategoryTree = useCallback(
+    (categories: Category[]) => {
       const treeData = addToTree(categories);
-
       const mappedTreeData = mapTreeToTreeDataNode(
         treeData.children,
         onClickTreeNode
       );
       setCategoryTreeData(mappedTreeData);
+      setSelectedCategory(treeData?.children?.[0] ?? null);
+    },
+    [onClickTreeNode, setSelectedCategory]
+  );
 
+  const createCategoryMap = useCallback(
+    (categories: Category[]) => {
       const categoryMap: Record<string, string> = {};
       categories.forEach((category) => {
         categoryMap[category.id.toString()] = category.name;
       });
       setCategoryMap(categoryMap);
+    },
+    [setCategoryMap]
+  );
 
-      setExpandedKeys(categories.map((item) => item.id));
-      setSelectedCategory(treeData?.children?.[0] ?? null);
-    } catch (e) {
-      console.error(e);
-      message.error("Something went wrong!");
+  const init = useCallback(async () => {
+    const categories = await fetchCategories();
+    if (!categories) {
+      return;
     }
-  }, [message, onClickTreeNode, setCategoryMap, setSelectedCategory]);
+
+    createCategoryTree(categories);
+    createCategoryMap(categories);
+    setExpandedKeys(categories.map((item) => item.id));
+  }, [createCategoryMap, createCategoryTree, fetchCategories]);
 
   useEffect(() => {
-    init();
+    if (initRef.current === true) {
+      init();
+    }
+
+    return () => {
+      initRef.current = false;
+    };
   }, [init]);
 
   const onExpand: TreeProps["onExpand"] = (expandedKeys) => {

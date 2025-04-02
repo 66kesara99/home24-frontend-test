@@ -1,5 +1,5 @@
 import { MenuOutlined } from "@ant-design/icons";
-import { Divider, Drawer, Flex, FloatButton, Layout, theme } from "antd";
+import { Divider, Drawer, Flex, FloatButton, Grid, Layout, theme } from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useState } from "react";
 import { Outlet } from "react-router";
@@ -10,11 +10,14 @@ import CategoryTree from "./category-tree";
 import { LastModifiedProduct } from "./last-modified-product";
 
 const { Content, Sider } = Layout;
+const { useBreakpoint } = Grid;
 
 const ProductsLayout: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const breakpoint = useBreakpoint();
 
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -31,8 +34,14 @@ const ProductsLayout: React.FC = () => {
       <CategoryProvider>
         <LastModifiedProvider>
           <div style={{ padding: "0 26px" }}>
-            <Flex justify="space-between" align="center">
-              <Title level={3}>Product Dashboard</Title>
+            <Flex
+              justify="space-between"
+              vertical={!breakpoint.md}
+              align="center"
+            >
+              <Title style={{ margin: "16px 0" }} level={2}>
+                Product Dashboard
+              </Title>
 
               <LastModifiedProduct />
             </Flex>
@@ -49,7 +58,7 @@ const ProductsLayout: React.FC = () => {
               <Sider
                 className="hide-on-mobile"
                 style={{ background: colorBgContainer }}
-                width={250}
+                width={300}
               >
                 <CategoryTree />
               </Sider>

@@ -5,17 +5,16 @@ import { createProduct, getProducts } from "../../api/products";
 import { Product } from "../../entities/product-entity";
 import { CategoryContext } from "../../state/category-state/category-context";
 import { LastModifiedContext } from "../../state/last-modified-state/last-modified-context";
+import { getAllChildKeys } from "../../utils/tree-utils";
 import { CreateEditProductModal } from "./components/create-edit-product-modal";
 import ProductList, { ProductTableData } from "./components/product-list";
-import { getAllChildKeys } from "../../utils/tree-utils";
 
 const ProductsPage: React.FC = () => {
   const { selectedCategory, categoryMap } = useContext(CategoryContext);
   const { setLastModifiedProduct } = useContext(LastModifiedContext);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
   const { message } = App.useApp();
 
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ProductTableData[]>([]);
 

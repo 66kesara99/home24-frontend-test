@@ -17,7 +17,6 @@ const ProductDetailsPage: React.FC = () => {
   const { productId } = params;
   const { categoryMap } = useContext(CategoryContext);
   const { setLastModifiedProduct } = useContext(LastModifiedContext);
-
   const { message } = App.useApp();
 
   const [product, setProduct] = useState<Product | undefined>();

@@ -30,6 +30,26 @@
       "name": "Chairs"
     },
     {
+      "id": 41,
+      "parent_id": 4,
+      "name": "Dining Chairs"
+    },
+    {
+      "id": 42,
+      "parent_id": 4,
+      "name": "Office Chairs"
+    },
+    {
+      "id": 421,
+      "parent_id": 42,
+      "name": "High Back Chairs"
+    },
+    {
+      "id": 422,
+      "parent_id": 42,
+      "name": "Low Back Chairs"
+    },
+    {
       "id": 5,
       "parent_id": 1,
       "name": "Tables"
@@ -75,14 +95,17 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         },
         {
           "code": "material",
+          "type": "text",
           "value": "wood"
         },
         {
           "code": "length",
+          "type": "text",
           "value": "10m"
         }
       ]
@@ -94,10 +117,12 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         },
         {
           "code": "material",
+          "type": "text",
           "value": "wood"
         }
       ]
@@ -109,6 +134,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -120,6 +146,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -131,6 +158,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -142,10 +170,12 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         },
         {
           "code": "material",
+          "type": "text",
           "value": "wood"
         }
       ]
@@ -157,6 +187,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -168,10 +199,12 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         },
         {
           "code": "code",
+          "type": "text",
           "value": "value2"
         }
       ]
@@ -183,6 +216,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -194,6 +228,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -205,10 +240,12 @@
       "attributes": [
         {
           "code": "code",
+          "type": "text",
           "value": "value"
         },
         {
           "code": "code 2",
+          "type": "text",
           "value": "value 2"
         }
       ]
@@ -220,6 +257,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -231,10 +269,12 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         },
         {
           "code": "material",
+          "type": "text",
           "value": "wood"
         }
       ]
@@ -246,6 +286,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -257,6 +298,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -268,6 +310,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -279,6 +322,7 @@
       "attributes": [
         {
           "code": "color",
+          "type": "text",
           "value": "red"
         }
       ]
@@ -290,6 +334,7 @@
       "attributes": [
         {
           "code": "material",
+          "type": "text",
           "value": "metal"
         }
       ]
@@ -329,19 +374,51 @@
           "value": "wood"
         }
       ]
+    },
+    {
+      "id": 4211,
+      "name": "High Back Chair 2",
+      "category_id": 421,
+      "attributes": [
+        {
+          "code": "material",
+          "type": "text",
+          "value": "Plastic"
+        },
+        {
+          "code": "code",
+          "type": "text",
+          "value": "AAYT"
+        }
+      ]
+    },
+    {
+      "id": 221,
+      "name": "Sofa Bed 1",
+      "category_id": 22,
+      "attributes": [
+        {
+          "code": "material",
+          "type": "text",
+          "value": "wood"
+        }
+      ]
+    },
+    {
+      "id": 4222,
+      "name": "Low Back Chair 1",
+      "category_id": 422
+    },
+    {
+      "id": 4221,
+      "name": "Low Back Chair 2",
+      "category_id": 422
     }
   ],
   "last-modified": {
-    "id": 211,
-    "name": "Coner Sofa 1",
-    "category_id": 21,
-    "attributes": [
-      {
-        "code": "material",
-        "type": "text",
-        "value": "wood"
-      }
-    ]
+    "id": 4221,
+    "name": "Low Back Chair 2",
+    "category_id": 422
   },
   "user": {
     "email": "test@email.com",

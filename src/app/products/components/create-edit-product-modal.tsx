@@ -30,9 +30,10 @@ export const CreateEditProductModal: FC<Props> = ({
   onClose,
   onSubmit,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const { categoryMap } = useContext(CategoryContext);
   const [form] = Form.useForm();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (values: Product) => {
     setIsLoading(true);
@@ -58,16 +59,18 @@ export const CreateEditProductModal: FC<Props> = ({
       open={isOpen}
       onCancel={onClose}
       width={{
-        xs: "90%",
+        xs: "80%",
         sm: "60%",
         md: "50%",
         lg: "40%",
         xl: "30%",
-        xxl: "20%",
+        xxl: "30%",
       }}
       footer={null}
+      style={{ margin: "32px 0" }}
     >
       <Form
+        form={form}
         name="productForm"
         onFinish={handleSubmit}
         onFinishFailed={onFormError}
@@ -79,7 +82,7 @@ export const CreateEditProductModal: FC<Props> = ({
           rules={[{ required: true, message: "Please input an id" }]}
           initialValue={product?.id}
         >
-          <InputNumber style={{ width: "100%" }} />
+          <InputNumber disabled={!!product} style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item<Product>

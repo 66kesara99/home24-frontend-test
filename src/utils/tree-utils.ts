@@ -14,21 +14,20 @@ export function getAllChildKeys(rootNode: CategoryTreeNode): number[] {
   while (stack.length > 0) {
     const node: CategoryTreeNode = stack.pop()!;
     childKeys.push(node.key);
-    if (node.children && node.children.length) {
-      for (let i = 0; i < node.children.length; i += 1) {
-        stack.push(node.children[i]);
-      }
-    }
+
+    (node?.children ?? []).forEach((childNode) => {
+      stack.push(childNode);
+    });
   }
 
   return childKeys;
 }
 
-function filterMatchAndNonMatch(key: number | undefined, category: Category[]) {
+function filterMatchAndNonMatch(key: number, category: Category[]) {
   const matched: Category[] = [];
   const nonMatched: Category[] = [];
 
-  if (!key) {
+  if (key < 0) {
     category.forEach((category) => {
       if (!category.parent_id) {
         matched.push(category);
@@ -58,19 +57,6 @@ export function addToTree(category: Category[]): CategoryTreeNode {
   };
   stack.push(root);
 
-  const { matched: rootCategories, nonMatched: subCategories } =
-    filterMatchAndNonMatch(undefined, category);
-
-  rootCategories.forEach((category) => {
-    root.children?.push({
-      key: category.id,
-      title: category.name,
-      children: [],
-    });
-  });
-
-  remainingCategories = subCategories;
-
   while (stack.length > 0) {
     const node: CategoryTreeNode = stack.pop()!;
 
@@ -79,20 +65,17 @@ export function addToTree(category: Category[]): CategoryTreeNode {
       remainingCategories
     );
 
-    if (matched.length > 0) {
-      matched.forEach((category) => {
-        node.children?.push({
-          key: category.id,
-          title: category.name,
-          children: [],
-        });
+    (matched ?? []).forEach((category) => {
+      node.children?.push({
+        key: category.id,
+        title: category.name,
+        children: [],
       });
-    }
-    if (node.children && node.children.length) {
-      for (let i = 0; i < node.children.length; i += 1) {
-        stack.push(node.children[i]);
-      }
-    }
+    });
+
+    (node?.children ?? []).forEach((childNode) => {
+      stack.push(childNode);
+    });
     remainingCategories = nonMatched;
   }
 
