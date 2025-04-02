@@ -1,6 +1,6 @@
 import { FC, useContext } from "react";
 import { NavLink } from "react-router";
-import { LastModifiedContext } from "../state/last-modified-state/last-modified-context";
+import { LastModifiedContext } from "../../../state/last-modified-state/last-modified-context";
 
 // Requested custom widget without using any UI elements from Ant Design
 // Using inline styles for simplicity. But can use tailwindcss, styled components, css or any css processor for advanced styling

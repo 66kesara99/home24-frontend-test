@@ -1,9 +1,10 @@
-import Title from "antd/es/typography/Title";
+import { NavLink } from "react-router";
+import logo from "../assets/logo.png";
 
 export const Logo = () => {
   return (
-    <Title level={3} style={{ color: "#ffffff", marginBottom: "0px" }}>
-      FE Test
-    </Title>
+    <NavLink to="/" style={{ display: "flex" }}>
+      <img width={75} src={logo} />
+    </NavLink>
   );
 };

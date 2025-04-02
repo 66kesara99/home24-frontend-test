@@ -1,18 +1,14 @@
-import { TreeDataNode } from "antd";
 import { createContext } from "react";
+import { CategoryTreeNode } from "../../utils/tree-utils";
 
 interface CategoryState {
   categoryMap: Record<string, string>;
   setCategoryMap: (categoryMap: Record<string, string>) => void;
-  categoryTree: TreeDataNode[];
-  setCategoryTree: (categoryTree: TreeDataNode[]) => void;
-  selectedCategory: TreeDataNode | null;
-  setSelectedCategory: (selectedCategory: TreeDataNode | null) => void;
+  selectedCategory: CategoryTreeNode | null;
+  setSelectedCategory: (selectedCategory: CategoryTreeNode | null) => void;
 }
 
 export const CategoryContext = createContext<CategoryState>({
-  categoryTree: [],
-  setCategoryTree: () => {},
   categoryMap: {},
   setCategoryMap: () => {},
   selectedCategory: null,

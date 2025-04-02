@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import NotFoundPage from "../components/not-found-page";
-import ProductsLayout from "../layouts/product-layout";
-import LoginPage from "./login/login";
-import ProductDetailsPage from "./products/product-details";
-import ProductsPage from "./products/products";
+import LoginPage from "./login/page";
+import NotFoundPage from "./not-found-page";
+import ProductsLayout from "./products/components/product-layout";
+import ProductsPage from "./products/page";
+import ProductDetailsPage from "./products/product-details/page";
 
 function Router() {
   return (

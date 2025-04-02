@@ -1,13 +1,11 @@
 import type { GetProp, TableProps } from "antd";
-import { App, Table } from "antd";
+import { Table } from "antd";
 import type { SorterResult } from "antd/es/table/interface";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { NavLink } from "react-router";
-import { getProducts } from "../api/products";
-import { AttributeValue } from "../entities/product-entity";
-import { CategoryContext } from "../state/category-state/category-context";
+import { AttributeValue } from "../../../entities/product-entity";
 
-interface ProductTableData {
+export interface ProductTableData {
   id: number;
   name: string;
   categoryName: string;
@@ -50,12 +48,12 @@ const columns: ColumnsType<ProductTableData> = [
   },
 ];
 
-const ProductList: React.FC = () => {
-  const { selectedCategory, categoryMap } = useContext(CategoryContext);
-  const { message } = App.useApp();
+interface Props {
+  products: ProductTableData[];
+  isLoading: boolean;
+}
 
-  const [data, setData] = useState<ProductTableData[]>();
-  const [loading, setLoading] = useState(false);
+const ProductList: FC<Props> = ({ products, isLoading }) => {
   const [tableParams, setTableParams] = useState<TableParams>({
     pagination: {
       showSizeChanger: true,
@@ -64,54 +62,6 @@ const ProductList: React.FC = () => {
       pageSize: 5,
     },
   });
-
-  const fetchData = useCallback(async () => {
-    if (!selectedCategory) {
-      return;
-    }
-
-    setLoading(true);
-
-    const selectedCategories: string[] = [selectedCategory.key.toString()];
-    if (selectedCategory.children) {
-      selectedCategory.children.forEach((item) => {
-        selectedCategories.push(item.key.toString());
-      });
-    }
-
-    try {
-      const results = await getProducts({
-        selectedCategories,
-      });
-
-      if (results) {
-        setData(
-          results.map((item) => ({
-            id: item.id,
-            name: item.name,
-            categoryName: categoryMap[item.category_id],
-            attributes: item.attributes,
-          }))
-        );
-        setTableParams((state) => ({
-          ...state,
-          pagination: {
-            ...state.pagination,
-            total: results.length,
-          },
-        }));
-      }
-    } catch (e) {
-      message.error("Something went wrong!");
-      console.error(e);
-    }
-
-    setLoading(false);
-  }, [categoryMap, message, selectedCategory]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const handleTableChange: TableProps<ProductTableData>["onChange"] = (
     pagination,
@@ -125,14 +75,24 @@ const ProductList: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    setTableParams((state) => ({
+      ...state,
+      pagination: {
+        ...state.pagination,
+        total: products.length,
+      },
+    }));
+  }, [products]);
+
   return (
     <>
       <Table<ProductTableData>
         columns={columns}
         rowKey={(record) => record.id.toString()}
-        dataSource={data}
+        dataSource={products}
         pagination={tableParams.pagination}
-        loading={loading}
+        loading={isLoading}
         onChange={handleTableChange}
       />
     </>

@@ -7,7 +7,17 @@
     {
       "id": 2,
       "parent_id": 1,
-      "name": "Sofas & Couches"
+      "name": "Sofas"
+    },
+    {
+      "id": 21,
+      "parent_id": 2,
+      "name": "Corner Sofas"
+    },
+    {
+      "id": 22,
+      "parent_id": 2,
+      "name": "Sofa Beds"
     },
     {
       "id": 3,
@@ -39,17 +49,17 @@
     },
     {
       "id": 9,
-      "parent_id": 7,
+      "parent_id": 8,
       "name": "Dishes"
     },
     {
       "id": 10,
-      "parent_id": 7,
+      "parent_id": 8,
       "name": "Cutlery"
     },
     {
       "id": 11,
-      "parent_id": 7,
+      "parent_id": 8,
       "name": "Cookware"
     },
     {
@@ -194,8 +204,12 @@
       "category_id": 4,
       "attributes": [
         {
-          "code": "color",
-          "value": "red"
+          "code": "code",
+          "value": "value"
+        },
+        {
+          "code": "code 2",
+          "value": "value 2"
         }
       ]
     },
@@ -268,19 +282,63 @@
           "value": "red"
         }
       ]
+    },
+    {
+      "id": 81,
+      "name": "Kitchen item 1",
+      "category_id": 8,
+      "attributes": [
+        {
+          "code": "material",
+          "value": "metal"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Kitchen item 2",
+      "category_id": 8,
+      "attributes": [
+        {
+          "code": "code",
+          "type": "text",
+          "value": "text"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Kitchen item 3",
+      "category_id": 8,
+      "attributes": [
+        {
+          "code": "code",
+          "type": "number",
+          "value": "15"
+        }
+      ]
+    },
+    {
+      "id": 211,
+      "name": "Coner Sofa 1",
+      "category_id": 21,
+      "attributes": [
+        {
+          "code": "material",
+          "type": "text",
+          "value": "wood"
+        }
+      ]
     }
   ],
   "last-modified": {
-    "id": 43,
-    "name": "Chair 3",
-    "category_id": 4,
+    "id": 211,
+    "name": "Coner Sofa 1",
+    "category_id": 21,
     "attributes": [
       {
-        "code": "color",
-        "value": "red"
-      },
-      {
         "code": "material",
+        "type": "text",
         "value": "wood"
       }
     ]

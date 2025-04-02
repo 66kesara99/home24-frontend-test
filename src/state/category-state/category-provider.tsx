@@ -1,5 +1,5 @@
-import { TreeDataNode } from "antd";
 import { useState } from "react";
+import { CategoryTreeNode } from "../../utils/tree-utils";
 import { CategoryContext } from "./category-context";
 
 export const CategoryProvider = ({
@@ -8,16 +8,12 @@ export const CategoryProvider = ({
   children: React.ReactNode;
 }) => {
   const [categoryMap, setCategoryMap] = useState<Record<string, string>>({});
-  const [categoryTree, setCategoryTree] = useState<TreeDataNode[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<TreeDataNode | null>(
-    null
-  );
+  const [selectedCategory, setSelectedCategory] =
+    useState<CategoryTreeNode | null>(null);
 
   return (
     <CategoryContext.Provider
       value={{
-        categoryTree,
-        setCategoryTree,
         categoryMap,
         setCategoryMap,
         selectedCategory,

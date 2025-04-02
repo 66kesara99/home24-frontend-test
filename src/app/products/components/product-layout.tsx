@@ -1,13 +1,13 @@
 import { MenuOutlined } from "@ant-design/icons";
-import { Drawer, Flex, FloatButton, Layout, theme } from "antd";
+import { Divider, Drawer, Flex, FloatButton, Layout, theme } from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useState } from "react";
 import { Outlet } from "react-router";
-import CategoryTree from "../components/category-tree";
-import { LastModifiedProduct } from "../components/last-modified-product";
-import { CategoryProvider } from "../state/category-state/category-provider";
-import { LastModifiedProvider } from "../state/last-modified-state/last-modified-provider";
-import AuthLayout from "./auth-layout";
+import AuthLayout from "../../../layouts/auth-layout";
+import { CategoryProvider } from "../../../state/category-state/category-provider";
+import { LastModifiedProvider } from "../../../state/last-modified-state/last-modified-provider";
+import CategoryTree from "./category-tree";
+import { LastModifiedProduct } from "./last-modified-product";
 
 const { Content, Sider } = Layout;
 
@@ -43,15 +43,18 @@ const ProductsLayout: React.FC = () => {
                 background: colorBgContainer,
                 borderRadius: borderRadiusLG,
                 minHeight: "90vh",
+                marginBottom: "24px",
               }}
             >
               <Sider
                 className="hide-on-mobile"
                 style={{ background: colorBgContainer }}
-                width={200}
+                width={250}
               >
                 <CategoryTree />
               </Sider>
+
+              <Divider type="vertical" style={{ height: "unset" }} />
 
               <FloatButton
                 className="hide-on-desktop"

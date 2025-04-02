@@ -5,7 +5,15 @@ export interface Product {
   attributes: AttributeValue[];
 }
 
+export enum AttributeType {
+  Number = "number",
+  Text = "text",
+  Url = "url",
+  Tags = "tags",
+  Boolean = "boolean",
+}
 export interface AttributeValue {
   code: string;
   value: any;
+  type: AttributeType;
 }

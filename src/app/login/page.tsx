@@ -1,13 +1,26 @@
 import type { FormProps } from "antd";
-import { App, Button, Card, Checkbox, Flex, Form, Input, Layout } from "antd";
-import { Content, Header } from "antd/es/layout/layout";
+import {
+  App,
+  Button,
+  Card,
+  Checkbox,
+  Flex,
+  Form,
+  Grid,
+  Input,
+  Layout,
+} from "antd";
+import { Content } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { login } from "../../api/user";
 import { FooterComponent } from "../../components/footer";
+import { HeaderComponent } from "../../components/header";
 import { Logo } from "../../components/logo";
 import { checkAuthToken, saveAuthToken } from "../../utils/auth-utils";
+
+const { useBreakpoint } = Grid;
 
 type FieldType = {
   email?: string;
@@ -17,6 +30,7 @@ type FieldType = {
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const breakpoints = useBreakpoint();
 
   const [isLoading, setIsLoading] = useState(false);
   const { message } = App.useApp();
@@ -30,13 +44,15 @@ const LoginPage: React.FC = () => {
       if (token) {
         saveAuthToken(token);
         navigate("/products");
+      } else {
+        message.error("Email or Password is wrong!");
       }
     } catch (e) {
       message.error("Something went wrong!");
       console.error(e);
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -53,16 +69,14 @@ const LoginPage: React.FC = () => {
 
   return (
     <Layout>
-      <Header
+      <HeaderComponent>
+        <Logo />
+      </HeaderComponent>
+      <Content
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          background: "#f1ebe7",
         }}
       >
-        <Logo />
-      </Header>
-      <Content>
         <Flex
           vertical
           justify="center"
@@ -70,16 +84,25 @@ const LoginPage: React.FC = () => {
           style={{ minHeight: "90vh" }}
         >
           <Card
+            hoverable
             title={
-              <Title
-                level={3}
-                style={{ marginBottom: "0px", textAlign: "center" }}
+              <Flex
+                justify="center"
+                align="center"
+                gap="small"
+                style={{ padding: "16px" }}
               >
-                Login
-              </Title>
+                <Logo />
+                <Title
+                  level={3}
+                  style={{ marginBottom: "0px", textAlign: "center" }}
+                >
+                  Login
+                </Title>
+              </Flex>
             }
             variant="borderless"
-            style={{ width: 300 }}
+            style={{ width: breakpoints.md ? 400 : 350 }}
           >
             <Form
               name="basic"
@@ -92,6 +115,7 @@ const LoginPage: React.FC = () => {
                 display: "flex",
                 flexDirection: "column",
               }}
+              size={breakpoints.md ? "large" : "middle"}
             >
               <Form.Item<FieldType>
                 label="Email"
@@ -122,7 +146,12 @@ const LoginPage: React.FC = () => {
               </Form.Item>
 
               <Form.Item label={null} style={{ justifyItems: "center" }}>
-                <Button type="primary" htmlType="submit" loading={isLoading}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  style={{ padding: "0 48px" }}
+                >
                   Login
                 </Button>
               </Form.Item>
