@@ -2,6 +2,8 @@
 
 Welcome to the home24 BXP Frontend Test Task
 
+https://github.com/user-attachments/assets/8e5fc3cc-aada-49f5-831f-96b4380e837e
+
 ## How to run
 
 - Clone the repo
