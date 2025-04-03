@@ -50,7 +50,10 @@ export const LastModifiedProduct: FC = () => {
         >
           {lastModifiedProduct?.name}
         </span>
-        <NavLink to={`/products/${lastModifiedProduct?.id}`}>
+        <NavLink
+          to={`/products/${lastModifiedProduct?.id}`}
+          aria-label="Go to last modified product"
+        >
           <button
             style={{
               border: "1px solid rgba(0, 232, 248, 0.40)",

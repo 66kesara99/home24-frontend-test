@@ -8,7 +8,7 @@ const NotFoundPage: React.FC = () => (
     title="404"
     subTitle="Sorry, the page you visited does not exist."
     extra={
-      <NavLink to="/">
+      <NavLink to="/" aria-label="Go to homepage">
         <Button type="primary">Back Home</Button>
       </NavLink>
     }

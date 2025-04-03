@@ -44,7 +44,11 @@ const columns: ColumnsType<ProductTableData> = [
   {
     title: "Action",
     key: "action",
-    render: (record) => <NavLink to={`${record.id}`}>View</NavLink>,
+    render: (record) => (
+      <NavLink to={`${record.id}`} aria-label="Go to product details">
+        View
+      </NavLink>
+    ),
   },
 ];
 
