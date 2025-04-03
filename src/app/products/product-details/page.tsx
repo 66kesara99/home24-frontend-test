@@ -1,16 +1,27 @@
 import type { DescriptionsProps } from "antd";
-import { App, Button, Descriptions, Flex, List, Typography } from "antd";
+import {
+  App,
+  Button,
+  Descriptions,
+  Flex,
+  Grid,
+  List,
+  Radio,
+  Tag,
+  Typography,
+} from "antd";
 import Title from "antd/es/typography/Title";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getProductById, updateProduct } from "../../../api/products";
 import LoadingSpinner from "../../../components/loading-spinner";
-import { Product } from "../../../entities/product-entity";
+import { AttributeType, Product } from "../../../entities/product-entity";
 import { CategoryContext } from "../../../state/category-state/category-context";
 import { LastModifiedContext } from "../../../state/last-modified-state/last-modified-context";
 import { CreateEditProductModal } from "../components/create-edit-product-modal";
 
 const { Text } = Typography;
+const { useBreakpoint } = Grid;
 
 const ProductDetailsPage: React.FC = () => {
   const params = useParams();
@@ -18,6 +29,7 @@ const ProductDetailsPage: React.FC = () => {
   const { categoryMap } = useContext(CategoryContext);
   const { setLastModifiedProduct } = useContext(LastModifiedContext);
   const { message } = App.useApp();
+  const breakpoint = useBreakpoint();
 
   const [product, setProduct] = useState<Product | undefined>();
   const [isLoading, setIsLoading] = useState(true);
@@ -69,6 +81,52 @@ const ProductDetailsPage: React.FC = () => {
     setIsEditModalOpen(false);
   };
 
+  const getAttributeValueComponent = (type: AttributeType, value: any) => {
+    switch (type) {
+      case AttributeType.Url:
+        return (
+          <Button
+            type="link"
+            style={{
+              justifySelf: "left",
+              padding: "0px",
+            }}
+          >
+            {value}
+          </Button>
+        );
+
+      case AttributeType.Tags:
+        return (
+          <Flex wrap>
+            {(value as string[]).map((tag) => (
+              <Tag key={tag} color="blue">
+                {tag}
+              </Tag>
+            ))}
+          </Flex>
+        );
+
+      case AttributeType.Boolean:
+        return (
+          <Radio.Group
+            options={[
+              { label: "True", value: true },
+              { label: "False", value: false },
+            ]}
+            value={value as boolean}
+            optionType="button"
+            buttonStyle="solid"
+          />
+        );
+
+      case AttributeType.Text:
+      case AttributeType.Number:
+      default:
+        return value;
+    }
+  };
+
   const items: DescriptionsProps["items"] = !product
     ? []
     : [
@@ -95,9 +153,15 @@ const ProductDetailsPage: React.FC = () => {
               style={{ width: "100%" }}
               dataSource={product.attributes}
               renderItem={(item) => (
-                <List.Item>
-                  <Text type="secondary">{`${item.code}: `}</Text>
-                  {item.value}
+                <List.Item
+                  style={{
+                    display: "flex",
+                    gap: "4px",
+                    justifyContent: "left",
+                  }}
+                >
+                  <Text type="secondary">{`${item.code}:`}</Text>
+                  {getAttributeValueComponent(item.type, item.value)}
                 </List.Item>
               )}
             />
@@ -124,6 +188,7 @@ const ProductDetailsPage: React.FC = () => {
           }
           bordered
           items={items}
+          layout={breakpoint.md ? "horizontal" : "vertical"}
         />
       )}
       <CreateEditProductModal

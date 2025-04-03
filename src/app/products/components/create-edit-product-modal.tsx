@@ -7,6 +7,7 @@ import {
   Input,
   InputNumber,
   Modal,
+  Radio,
   Select,
   Typography,
 } from "antd";
@@ -52,12 +53,95 @@ export const CreateEditProductModal: FC<Props> = ({
     console.error("Form Error");
   };
 
+  const getFormFieldFromSelect = (type: AttributeType, name: number) => {
+    switch (type) {
+      case AttributeType.Number:
+        return (
+          <Form.Item
+            name={[name, "value"]}
+            rules={[
+              { required: true, message: "Please input a value" },
+              { type: "number", message: "Please enter a valid number" },
+            ]}
+            label="Value"
+          >
+            <InputNumber style={{ width: "100%" }} placeholder="Value" />
+          </Form.Item>
+        );
+
+      case AttributeType.Url:
+        return (
+          <Form.Item
+            name={[name, "value"]}
+            rules={[
+              { required: true, message: "Please input a value" },
+              { type: "url", message: "Please enter a valid url" },
+            ]}
+            label="Value"
+          >
+            <Input placeholder="Value" />
+          </Form.Item>
+        );
+
+      case AttributeType.Boolean:
+        return (
+          <Form.Item
+            name={[name, "value"]}
+            rules={[{ required: true, message: "Please input a value" }]}
+            label="Value"
+          >
+            <Radio.Group
+              options={[
+                { label: "True", value: true },
+                { label: "False", value: false },
+              ]}
+              optionType="button"
+              buttonStyle="solid"
+            />
+          </Form.Item>
+        );
+
+      case AttributeType.Tags:
+        return (
+          <Form.Item
+            name={[name, "value"]}
+            rules={[{ required: true, message: "Please input a value" }]}
+            label="Value"
+          >
+            <Select
+              mode="tags"
+              style={{ width: "100%" }}
+              tokenSeparators={[","]}
+              options={[]}
+            />
+          </Form.Item>
+        );
+
+      case AttributeType.Text:
+      default:
+        return (
+          <Form.Item
+            name={[name, "value"]}
+            rules={[{ required: true, message: "Please input a value" }]}
+            label="Value"
+          >
+            <Input placeholder="Value" />
+          </Form.Item>
+        );
+    }
+  };
+
+  const handleOnClose = () => {
+    form.resetFields();
+    onClose();
+  };
+
   return (
     <Modal
       title={product ? "Create Product" : "Edit Product"}
       centered
       open={isOpen}
-      onCancel={onClose}
+      onCancel={handleOnClose}
       width={{
         xs: "80%",
         sm: "60%",
@@ -79,10 +163,17 @@ export const CreateEditProductModal: FC<Props> = ({
         <Form.Item<Product>
           label="ID"
           name="id"
-          rules={[{ required: true, message: "Please input an id" }]}
+          rules={[
+            { required: true, message: "Please input an ID" },
+            { type: "number", message: "Please enter a valid number" },
+          ]}
           initialValue={product?.id}
         >
-          <InputNumber disabled={!!product} style={{ width: "100%" }} />
+          <InputNumber
+            disabled={!!product}
+            style={{ width: "100%" }}
+            placeholder="ID"
+          />
         </Form.Item>
 
         <Form.Item<Product>
@@ -91,7 +182,7 @@ export const CreateEditProductModal: FC<Props> = ({
           rules={[{ required: true, message: "Please input a name" }]}
           initialValue={product?.name}
         >
-          <Input />
+          <Input placeholder="Name" />
         </Form.Item>
 
         <Form.Item<Product>
@@ -152,14 +243,17 @@ export const CreateEditProductModal: FC<Props> = ({
                       </Select>
                     </Form.Item>
                     <Form.Item
-                      {...restField}
-                      name={[name, "value"]}
-                      rules={[
-                        { required: true, message: "Please input a value" },
-                      ]}
-                      label="Value"
+                      shouldUpdate={(prevValues, currentValues) =>
+                        prevValues.attributes?.[name]?.type !==
+                        currentValues.attributes?.[name]?.type
+                      }
                     >
-                      <Input placeholder="Value" />
+                      {({ getFieldValue }) =>
+                        getFormFieldFromSelect(
+                          getFieldValue(["attributes", name, "type"]),
+                          name
+                        )
+                      }
                     </Form.Item>
                   </>
                 </Card>
@@ -180,7 +274,7 @@ export const CreateEditProductModal: FC<Props> = ({
 
         <Form.Item label={null}>
           <Flex gap="small" justify="end">
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={handleOnClose}>Cancel</Button>
             <Button type="primary" htmlType="submit" loading={isLoading}>
               Submit
             </Button>

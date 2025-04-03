@@ -148,6 +148,11 @@
           "code": "color",
           "type": "text",
           "value": "red"
+        },
+        {
+          "code": "Link",
+          "type": "url",
+          "value": "https://www.google.com/"
         }
       ]
     },
@@ -372,6 +377,26 @@
           "code": "material",
           "type": "text",
           "value": "wood"
+        },
+        {
+          "code": "link",
+          "type": "url",
+          "value": "https://www.google.com/"
+        },
+        {
+          "type": "tags",
+          "code": "tags",
+          "value": "hello,world,test"
+        },
+        {
+          "type": "number",
+          "code": "number",
+          "value": 100
+        },
+        {
+          "type": "boolean",
+          "code": "available",
+          "value": true
         }
       ]
     },
@@ -407,18 +432,75 @@
     {
       "id": 4222,
       "name": "Low Back Chair 1",
-      "category_id": 422
+      "category_id": 422,
+      "attributes": [
+        {
+          "code": "material",
+          "type": "tags",
+          "value": [
+            "hash"
+          ]
+        },
+        {
+          "type": "boolean",
+          "value": true,
+          "code": "boolean"
+        },
+        {
+          "code": "available",
+          "type": "boolean",
+          "value": false
+        },
+        {
+          "code": "Price",
+          "value": "100",
+          "type": "number"
+        },
+        {
+          "code": "Material",
+          "type": "text",
+          "value": "wood"
+        }
+      ]
     },
     {
       "id": 4221,
       "name": "Low Back Chair 2",
       "category_id": 422
+    },
+    {
+      "id": 61,
+      "name": "Bed 1",
+      "category_id": 6,
+      "attributes": [
+        {
+          "code": "material",
+          "type": "tags",
+          "value": [
+            "wood",
+            "hello",
+            "world"
+          ]
+        }
+      ]
     }
   ],
   "last-modified": {
-    "id": 4221,
-    "name": "Low Back Chair 2",
-    "category_id": 422
+    "id": 24,
+    "name": "Sofa 4",
+    "category_id": 2,
+    "attributes": [
+      {
+        "code": "color",
+        "type": "text",
+        "value": "red"
+      },
+      {
+        "code": "Link",
+        "type": "url",
+        "value": "https://www.google.com/"
+      }
+    ]
   },
   "user": {
     "email": "test@email.com",
